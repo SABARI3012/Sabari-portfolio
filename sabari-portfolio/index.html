@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabari's Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(18, 18, 18, 0.9); /* subtle dark background */
+      z-index: 1000;
+      padding: 10px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar a {
+      color: #fff;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+
+    .navbar a:hover {
+      color: #a6fcff;
+    }
+    
+    #s {
+      color: #a6fcff;
+
+    }
+    #hero {
+      background: url('https://via.placeholder.com/1500x800?text=Background+Image') center center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    #hero h1 {
+      font-size: 4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #a6fcff;
+    }
+    #hero h2 {
+      font-size: 50px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      
+    }    
+
+    #hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      padding: 80px;
+    }
+    
+    #role:hover {
+      color: #a6fcff;
+    }
+    
+    .btn-primary, .btn-outline-light {
+      background-color: #1eee37;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      transition: background-color 0.3s, transform 0.2s ease;
+    }
+
+    .btn-outline-light {
+      background-color: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .btn-primary:hover, .btn-outline-light:hover {
+      transform: scale(1.05);
+      background-color: #1eee37;
+    }
+
+    section {
+      height: 100vh;
+      padding: 40px 0;
+      
+    }
+    #nav{
+      max-height: 30px;
+    }
+    
+    #about p {
+      font-size: 1.5rem;
+      clear: right;
+    
+    }
+
+    #about img{
+      height: 800px;
+      width: 500px ;
+      float: right;
+
+    }
+
+    #skills .skill-icons {
+      padding-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    figure {
+      text-align: center;
+      color: #ccc;
+    }
+
+    figure img {
+      height: 180px;
+      width: 180px;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    figure img:hover {
+      transform: scale(1.1);
+    }
+
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+   
+
+    #about p,#experience p,#p1,#contact p{
+      padding-top: 50px;
+    }
+    
+    #about img {
+  border: 5px dashed white;
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+    #experience li:hover{
+      color: #a6fcff;
+      
+    }
+
+
+    .project-card {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+    .timeline {
+  position: relative;
+  margin-top: 50px;
+  margin-left: 20px;
+  padding-left: 30px;
+  border-left: 3px solid #1eee37;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 20px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -12px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  background-color: #1eee37;
+  border-radius: 50%;
+  border: 2px solid #121212;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #a6fcff;
+  margin-bottom: 5px;
+}
+
+.timeline-content h5 {
+  margin: 0 0 5px 0;
+  color: #fff;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+    footer {
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .social-icons i {
+      font-size: 2rem;
+      margin: 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <a class="navbar-brand" href="#"id='s'>Sabari S</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" data-aos="fade-up">
+    <div>
+     <span> <h2 style='display: inline;'>Hi, I'm</h2><h1 id="n" style='display: inline;'>  Sabari</h1></span>
+      <h2 id="role">Full Stack Developer and UI/UX Designer</h2>
+      <p>Passionate about creating interactive web applications. I specialize in front-end and back-end technologies, building seamless and dynamic user experiences. Let’s create something extraordinary together!</p>
+      <a href="https://www.linkedin.com/in/sabari-s-3397b8202/" class="btn btn-primary">Hire Me</a>&nbsp;&nbsp;&nbsp;
+      <a href="#skills" class="btn btn-primary">My Skills</a>
+    </div>
+  </section>
+
+<!-- About -->
+<section id="about" data-aos="fade-right">
+  <div class="container">
+    <h2 class="text-center" style="color:#a6fcff;">About Me</h2>
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p>Hello! I’m Sabari, a passionate Full Stack Developer and UI/UX Designer. With years of experience in crafting user-friendly, scalable web applications, I thrive on solving complex problems with innovative solutions.
+        I specialize in front-end frameworks like React, and back-end technologies like Node.js, MongoDB and Express.js. My focus is on building seamless user experiences and clean, maintainable code. When I'm not coding, you’ll find me exploring the latest trends in design or mentoring budding developers.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="https://chisellabs.com/glossary/wp-content/uploads/2022/06/pasted-image-0-6.png" alt="Sabari Portfolio" class="img-fluid rounded" style="border: 5px dashed white;">
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Skills -->
+  <section id="skills" data-aos="zoom-in">
+    <div class="container text-center">
+      <h2 style="color:#a6fcff;">My Skills</h2>
+      <div class="skill-icons">
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+          <figcaption>Python</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+          <figcaption>HTML</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+          <figcaption>CSS</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+          <figcaption>JavaScript</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+          <figcaption>Bootstrap</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular">
+          <figcaption>Angular</figcaption>
+        </figure>
+        <figure>
+          <img src="https://icon.icepanel.io/Technology/svg/Flask.svg" alt="Flask" style="background-color: white;" >
+          <figcaption>Flask</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+          <figcaption>MySQL</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+          <figcaption>Figma</figcaption>
+        </figure>
+        <figure>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          <figcaption>Node.js</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" data-aos="fade-left">
+  <div class="container">
+    <h2 class="text-center" style="color:#a6fcff;">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Jun 2024 – Feb 2025</div>
+        <div class="timeline-content">
+          <h5>Full Stack Training — Accord Info Matrix</h5>
+          <ul class="text-start mx-auto" style="max-width: 800px; font-size: 1.2rem;">
+          <li>Completed intensive training in Python, MySQL, and front-end technologies. Built full-stack mini-projects with UI/UX principles.</li>
+          <li>Enhanced application performance through optimized database queries and caching techniques</li>
+          <li>Implemented secure and scalable APIs for seamless communication between front-end and back-end systems.</li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Sep 2023 – Dec 2023</div>
+        <div class="timeline-content">
+          <h5>Python Developer Intern — Retech</h5>
+          <ul class="text-start mx-auto" style="max-width: 800px; font-size: 1.2rem;">
+          <li>Gained Knowledge in Python Programming. Collaborated with a small team using Git and Agile practices.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Projects -->
+  <section id="projects" data-aos="fade-up">
+    <div class="container text-center">
+  <h2 style="color:#a6fcff;">My Projects</h2>
+  <div class="row g-4 justify-content-center">
+
+    <!-- Project 1 -->
+    <div class="col-md-4">
+      <div class="project-card position-relative overflow-hidden">
+        <img src="https://www.neoz.com/cdn/shop/articles/Redox-at-Infinity-Hotel-Conference-Resort-Munich_compressed-1024x683.jpg?crop=center&height=560&v=1698211952&width=840" class="img-fluid" alt="Restaurant Website">
+        <div class="project-overlay p-3">
+          <h5>Restaurant Website</h5>
+          <p>Responsive website with sections for Home, Menu, Booking & Contact. Built with HTML, CSS, Angular.</p>
+          <a href="https://github.com/SABARI3012/NOVEMBER-MOON" class="btn btn-outline-light btn-sm mt-2" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="col-md-4">
+      <div class="project-card position-relative overflow-hidden">
+        <img src="https://www.officetimer.com/wp-content/uploads/2017/06/tackle-employee-in-effiency.jpg" class="img-fluid" alt="Employee Management">
+        <div class="project-overlay p-3">
+          <h5>Employee Management Web App</h5>
+          <p>CRUD app for managing employee records using Python, Flask, MySQL.</p>
+          <a href="https://github.com/SABARI3012/EMPLOYEE-MANAGEMENT-SYSTEM" class="btn btn-outline-light btn-sm mt-2" target="_blank">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="col-md-4">
+      <div class="project-card position-relative overflow-hidden">
+        <img src="https://cdn.prod.website-files.com/606a802fcaa89bc357508cad/61701b4e166c837543d8f0ce_2_How%20To%20a%20Create%20Personal%20Portfolio%20Website-p-1080.png" class="img-fluid" alt="Portfolio Website">
+        <div class="project-overlay p-3">
+          <h5>Portfolio Website</h5>
+          <p>Responsive portfolio showcasing skills, projects, and contact. Designed and built from scratch.</p>
+          <a href="https://github.com/SABARI3012/Sabari-portfolio" class="btn btn-outline-light btn-sm mt-2">View Project</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" data-aos="zoom-in-up">
+    <div class="container text-center">
+      <h2 style="color:#a6fcff;">Contact Me</h2>
+      <p>Feel free to message me using the form below or download my résumé.</p>
+      <form action="https://formspree.io/f/xrbqrqzj" method="POST" class="row justify-content-center g-3" style="max-width: 600px; margin: auto;">
+        <div class="col-md-6">
+          <input type="text" name="name" class="form-control" placeholder="Your Name" required />
+        </div>
+        <div class="col-md-6">
+          <input type="email" name="_replyto" class="form-control" placeholder="Your Email" required />
+        </div>
+        <div class="col-12">
+          <textarea name="message" rows="4" class="form-control" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+      <a href="Sabari_Resume.pdf" class="btn btn-outline-light mt-4" download>
+        <i class="fas fa-download"></i> Download Résumé
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://github.com/SABARI3012" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="www.linkedin.com/in/sabari-s-3397b8202" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <p class="mt-3">© 2025 Sabari. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap & AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
